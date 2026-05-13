@@ -45,6 +45,7 @@ Nguyên tắc lọc hiện tại:
 - Không dùng link Google News redirect.
 - Chỉ giữ bài có nhắc đúng tên đối thủ trong tiêu đề hoặc mô tả RSS.
 - Chỉ giữ URL thuộc domain nguồn báo gốc, ví dụ `cafef.vn` hoặc `vietstock.vn`.
+- Chỉ giữ bài trong 7 ngày gần nhất.
 
 Nếu hôm đó không có bài đạt điều kiện, web sẽ hiển thị trạng thái chưa có tin phù hợp thay vì tự tạo tin thay thế.
 

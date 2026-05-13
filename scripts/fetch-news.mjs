@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 const OUTPUT_FILE = "data/news.json";
 const JS_OUTPUT_FILE = "data/news-data.js";
 const MAX_ITEMS = 40;
+const LOOKBACK_DAYS = 7;
 
 const competitors = [
   {
@@ -26,6 +27,17 @@ const competitors = [
   {
     id: "mas",
     aliases: ["mirae asset", "masvn", "mirae asset securities"],
+  },
+  {
+    id: "vpx",
+    aliases: [
+      "vpx",
+      "vpbank securities",
+      "vpbanksecurities",
+      "vpbank securities jsc",
+      "chứng khoán vpbank",
+      "ctcp chứng khoán vpbank",
+    ],
   },
 ];
 
@@ -127,6 +139,14 @@ function inferTheme(text) {
   return "Môi giới";
 }
 
+function isWithinLookback(publishedAt) {
+  const publishedTime = new Date(publishedAt).getTime();
+  if (!Number.isFinite(publishedTime)) return false;
+
+  const cutoffTime = Date.now() - LOOKBACK_DAYS * 24 * 60 * 60 * 1000;
+  return publishedTime >= cutoffTime;
+}
+
 function findCompetitor(title, description) {
   const normalized = normalizeText(`${title} ${description}`);
   return competitors.find((competitor) =>
@@ -159,6 +179,10 @@ function parseRss(xml, feed) {
       }
 
       const publishedAt = pubDate ? new Date(pubDate).toISOString() : new Date().toISOString();
+      if (!isWithinLookback(publishedAt)) {
+        return null;
+      }
+
       const content = `${title}. ${description}`;
 
       return {
@@ -213,7 +237,9 @@ function dedupeItems(items) {
 }
 
 function filterExistingStrict(items) {
-  return items.filter((item) => findCompetitor(item.title, item.summary || item.content || ""));
+  return items.filter(
+    (item) => findCompetitor(item.title, item.summary || item.content || "") && isWithinLookback(item.publishedAt),
+  );
 }
 
 async function main() {
@@ -225,9 +251,10 @@ async function main() {
     .slice(0, MAX_ITEMS);
 
   const payload = {
-    generatedAt: new Date().toISOString(),
-    source: fetchedItems.length ? "Original publisher RSS" : "existing strict fallback",
-    feeds: feeds.map(({ name, url }) => ({ name, url })),
+        generatedAt: new Date().toISOString(),
+        source: fetchedItems.length ? "Original publisher RSS" : "existing strict fallback",
+        lookbackDays: LOOKBACK_DAYS,
+        feeds: feeds.map(({ name, url }) => ({ name, url })),
     items,
   };
 

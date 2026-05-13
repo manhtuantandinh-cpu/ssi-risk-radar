@@ -59,6 +59,18 @@ const competitors = [
       "Khách hàng tổ chức": 37,
     },
   },
+  {
+    id: "vpx",
+    name: "VPBankSecurities (VPX)",
+    focus: "Nền tảng số, hệ sinh thái VPBank, sản phẩm tài sản cá nhân",
+    baseRisk: 61,
+    sensitivity: {
+      "Môi giới": 64,
+      "Margin": 67,
+      "Sản phẩm số": 78,
+      "Khách hàng tổ chức": 44,
+    },
+  },
 ];
 
 let newsItems = [];
@@ -453,7 +465,7 @@ function render() {
   dom.todayLabel.textContent = formatDate();
   renderMorningQuote();
   if (dom.dataStatus) {
-    dom.dataStatus.textContent = `${newsItems.length} bài từ RSS gốc. Chỉ giữ bài có URL báo thật và nhắc đúng đối thủ.`;
+    dom.dataStatus.textContent = `${newsItems.length} bài từ RSS gốc trong 7 ngày gần nhất. Chỉ giữ bài có URL báo thật và nhắc đúng đối thủ.`;
   }
   renderCompetitors();
   renderThemeFilters();

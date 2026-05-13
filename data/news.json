@@ -1,6 +1,7 @@
 {
-  "generatedAt": "2026-05-13T03:12:56.163Z",
+  "generatedAt": "2026-05-13T06:22:28.078Z",
   "source": "Original publisher RSS",
+  "lookbackDays": 7,
   "feeds": [
     {
       "name": "CafeF - Thị trường chứng khoán",

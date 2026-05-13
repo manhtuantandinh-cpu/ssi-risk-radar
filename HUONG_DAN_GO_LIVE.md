@@ -70,9 +70,10 @@ Workflow `.github/workflows/update-news-and-deploy.yml` đang chạy mỗi ngày
 Mỗi lần chạy, nó sẽ:
 
 1. Lấy tin từ RSS gốc của các báo đang cấu hình.
-2. Ghi tin mới vào `data/news.json`.
-3. Ghi thêm `data/news-data.js` để bản mở local cũng đọc được dữ liệu.
-4. Deploy lại website lên GitHub Pages.
+2. Chỉ giữ bài trong 7 ngày gần nhất và có nhắc đúng đối thủ.
+3. Ghi tin mới vào `data/news.json`.
+4. Ghi thêm `data/news-data.js` để bản mở local cũng đọc được dữ liệu.
+5. Deploy lại website lên GitHub Pages.
 
 Bạn cũng có thể cập nhật thủ công bất cứ lúc nào:
 
