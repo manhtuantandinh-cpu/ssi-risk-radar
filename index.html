@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SSI Competitive Risk Radar</title>
+    <link rel="stylesheet" href="styles.css?v=morning-quote-20260513" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SSI Competitive Intelligence</p>
+          <h1>Radar rủi ro đối thủ</h1>
+        </div>
+        <div class="topbar__meta">
+          <span id="todayLabel">--</span>
+          <button class="icon-button" id="refreshDaily" type="button" aria-label="Đổi bản tin trong ngày">
+            <span aria-hidden="true">↻</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="morning-quote" aria-label="Quote khởi động ngày mới">
+        <div class="morning-quote__mark" aria-hidden="true">“</div>
+        <div>
+          <p id="quoteText">Đang tải quote khởi động ngày mới...</p>
+          <span id="quoteAuthor"></span>
+        </div>
+      </section>
+
+      <section class="source-banner" aria-label="Trạng thái dữ liệu">
+        <strong>Đang dùng RSS gốc từ báo</strong>
+        <span id="dataStatus">Chỉ hiển thị bài có link gốc và nhắc đúng đối thủ. Không dùng tin mẫu.</span>
+      </section>
+
+      <section class="dashboard-grid">
+        <aside class="panel competitors-panel" aria-label="Danh sách đối thủ">
+          <div class="panel-heading">
+            <p class="section-label">Đối thủ</p>
+            <span id="trackedCount">0</span>
+          </div>
+          <div class="competitor-list" id="competitorList"></div>
+        </aside>
+
+        <section class="main-stack">
+          <section class="daily-brief">
+            <div class="brief-copy">
+              <p class="section-label">Tin gốc đã xác thực hôm nay</p>
+              <h2 id="dailyTitle">Đang tải...</h2>
+              <p id="dailySummary"></p>
+              <div class="brief-meta">
+                <span id="dailyCompetitor"></span>
+                <span id="dailySource"></span>
+                <span id="dailyTheme"></span>
+                <a id="dailyLink" href="#" target="_blank" rel="noreferrer">Đọc bài gốc</a>
+              </div>
+            </div>
+            <div class="risk-meter" aria-label="Điểm rủi ro">
+              <svg viewBox="0 0 160 160" role="img" aria-label="Vòng điểm rủi ro">
+                <circle class="meter-track" cx="80" cy="80" r="66"></circle>
+                <circle class="meter-value" id="meterValue" cx="80" cy="80" r="66"></circle>
+              </svg>
+              <div class="risk-meter__value">
+                <strong id="riskScore">0</strong>
+                <span id="riskLevel">--</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="insight-layout">
+            <article class="panel rationale-panel">
+              <div class="panel-heading">
+                <p class="section-label">Đánh giá tự động</p>
+                <span id="confidenceLabel">--</span>
+              </div>
+              <ul class="rationale-list" id="rationaleList"></ul>
+            </article>
+
+            <article class="panel trend-panel">
+              <div class="panel-heading">
+                <p class="section-label">Áp lực theo mảng</p>
+                <span>0-100</span>
+              </div>
+              <div class="segment-bars" id="segmentBars"></div>
+            </article>
+          </section>
+
+          <section class="panel monitor-panel">
+            <div class="panel-heading">
+              <p class="section-label">Dòng tin đối thủ</p>
+              <div class="filters" id="themeFilters"></div>
+            </div>
+            <div class="news-stream" id="newsStream"></div>
+          </section>
+        </section>
+
+        <aside class="panel scorer-panel">
+          <div class="panel-heading">
+            <p class="section-label">Chấm điểm tin mới</p>
+            <span>Beta</span>
+          </div>
+          <form id="scoreForm">
+            <label>
+              Đối thủ
+              <select id="manualCompetitor"></select>
+            </label>
+            <label>
+              Tiêu đề
+              <input id="manualTitle" type="text" placeholder="VD: VPS mở rộng sản phẩm margin..." />
+            </label>
+            <label>
+              Nội dung tin
+              <textarea id="manualContent" rows="8" placeholder="Dán nội dung bài viết hoặc ghi chú phân tích tại đây"></textarea>
+            </label>
+            <button class="primary-button" type="submit">Đánh giá rủi ro</button>
+          </form>
+
+          <div class="manual-result" id="manualResult" hidden>
+            <span id="manualLevel">--</span>
+            <strong id="manualScore">0</strong>
+            <p id="manualReason"></p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="data/news-data.js?v=morning-quote-20260513"></script>
+    <script src="app.js?v=morning-quote-20260513"></script>
+  </body>
+</html>

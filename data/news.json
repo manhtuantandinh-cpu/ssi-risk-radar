@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-05-13T02:30:53.700Z",
+  "source": "Original publisher RSS",
+  "feeds": [
+    {
+      "name": "CafeF - Thị trường chứng khoán",
+      "url": "https://cafef.vn/thi-truong-chung-khoan.rss"
+    },
+    {
+      "name": "CafeF - Tài chính ngân hàng",
+      "url": "https://cafef.vn/tai-chinh-ngan-hang.rss"
+    },
+    {
+      "name": "CafeF - Doanh nghiệp",
+      "url": "https://cafef.vn/doanh-nghiep.rss"
+    },
+    {
+      "name": "Vietstock - Cổ phiếu",
+      "url": "https://vietstock.vn/830/chung-khoan/co-phieu.rss"
+    },
+    {
+      "name": "Vietstock - Chứng khoán phái sinh",
+      "url": "https://vietstock.vn/418/chung-khoan/chung-khoan-phai-sinh.rss"
+    },
+    {
+      "name": "Vietstock - Trái phiếu",
+      "url": "https://vietstock.vn/785/chung-khoan/trai-phieu.rss"
+    },
+    {
+      "name": "Vietstock - Hoạt động kinh doanh",
+      "url": "https://vietstock.vn/737/doanh-nghiep/hoat-dong-kinh-doanh.rss"
+    }
+  ],
+  "items": [
+    {
+      "id": "vndirect-bde8bbe9a7",
+      "competitorId": "vndirect",
+      "source": "CafeF - Thị trường chứng khoán",
+      "url": "https://cafef.vn/vn-index-ap-sat-dinh-lich-su-ctck-canh-bao-kich-ban-xanh-vo-do-long-188260512212732752.chn",
+      "theme": "Sản phẩm số",
+      "title": "VN-Index áp sát đỉnh lịch sử, CTCK cảnh báo kịch bản “xanh vỏ đỏ lòng”",
+      "summary": "VNDirect khuyến nghị chiến lược giao dịch linh hoạt, tận dụng cơ hội chốt lời quanh vùng đỉnh và xem xét giải ngân trở lại nếu chỉ số về vùng hỗ trợ quanh 1.820 điểm.",
+      "content": "VN-Index áp sát đỉnh lịch sử, CTCK cảnh báo kịch bản “xanh vỏ đỏ lòng”. VNDirect khuyến nghị chiến lược giao dịch linh hoạt, tận dụng cơ hội chốt lời quanh vùng đỉnh và xem xét giải ngân trở lại nếu chỉ số về vùng hỗ trợ quanh 1.820 điểm.",
+      "publishedAt": "2026-05-12T17:04:00.000Z"
+    }
+  ]
+}
