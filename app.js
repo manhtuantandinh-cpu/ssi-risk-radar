@@ -1,5 +1,17 @@
 const competitors = [
   {
+    id: "ssi",
+    name: "SSI",
+    focus: "Điểm chuẩn nội bộ, thị phần môi giới, IB, khách hàng tổ chức",
+    baseRisk: 50,
+    sensitivity: {
+      "Môi giới": 74,
+      "Margin": 68,
+      "Sản phẩm số": 62,
+      "Khách hàng tổ chức": 86,
+    },
+  },
+  {
     id: "vps",
     name: "VPS",
     focus: "Thị phần môi giới, phái sinh, phí giao dịch",
@@ -24,15 +36,15 @@ const competitors = [
     },
   },
   {
-    id: "vndirect",
-    name: "VNDirect",
-    focus: "Nhà đầu tư cá nhân, app giao dịch, nội dung tư vấn",
-    baseRisk: 59,
+    id: "vci",
+    name: "VCI",
+    focus: "Ngân hàng đầu tư, khách hàng tổ chức, nghiên cứu",
+    baseRisk: 58,
     sensitivity: {
-      "Môi giới": 70,
-      "Margin": 63,
-      "Sản phẩm số": 72,
-      "Khách hàng tổ chức": 45,
+      "Môi giới": 55,
+      "Margin": 52,
+      "Sản phẩm số": 46,
+      "Khách hàng tổ chức": 84,
     },
   },
   {
@@ -48,6 +60,18 @@ const competitors = [
     },
   },
   {
+    id: "mbs",
+    name: "MBS",
+    focus: "Hệ sinh thái MB, khách hàng cá nhân, môi giới và margin",
+    baseRisk: 60,
+    sensitivity: {
+      "Môi giới": 67,
+      "Margin": 72,
+      "Sản phẩm số": 61,
+      "Khách hàng tổ chức": 48,
+    },
+  },
+  {
     id: "mas",
     name: "Mirae Asset Securities",
     focus: "Cho vay margin, nhà đầu tư cá nhân, sản phẩm Hàn Quốc",
@@ -60,8 +84,56 @@ const competitors = [
     },
   },
   {
-    id: "vpx",
-    name: "VPBankSecurities (VPX)",
+    id: "vnds",
+    name: "VNDS",
+    focus: "Nhà đầu tư cá nhân, app giao dịch, nội dung tư vấn",
+    baseRisk: 59,
+    sensitivity: {
+      "Môi giới": 70,
+      "Margin": 63,
+      "Sản phẩm số": 72,
+      "Khách hàng tổ chức": 45,
+    },
+  },
+  {
+    id: "yuanta",
+    name: "YUANTA",
+    focus: "Nhà đầu tư cá nhân, môi giới, báo cáo chiến lược",
+    baseRisk: 53,
+    sensitivity: {
+      "Môi giới": 58,
+      "Margin": 55,
+      "Sản phẩm số": 48,
+      "Khách hàng tổ chức": 44,
+    },
+  },
+  {
+    id: "dnse",
+    name: "DNSE",
+    focus: "Nền tảng số, pricing linh hoạt, nhà đầu tư mới",
+    baseRisk: 62,
+    sensitivity: {
+      "Môi giới": 65,
+      "Margin": 58,
+      "Sản phẩm số": 86,
+      "Khách hàng tổ chức": 34,
+    },
+  },
+  {
+    id: "fpts",
+    name: "FPTS",
+    focus: "Môi giới cá nhân, nền tảng giao dịch, khách hàng trung thành",
+    baseRisk: 50,
+    sensitivity: {
+      "Môi giới": 57,
+      "Margin": 50,
+      "Sản phẩm số": 62,
+      "Khách hàng tổ chức": 38,
+    },
+  },
+  {
+    id: "vpbanks",
+    name: "VPBankS",
     focus: "Nền tảng số, hệ sinh thái VPBank, sản phẩm tài sản cá nhân",
     baseRisk: 61,
     sensitivity: {
@@ -69,6 +141,30 @@ const competitors = [
       "Margin": 67,
       "Sản phẩm số": 78,
       "Khách hàng tổ chức": 44,
+    },
+  },
+  {
+    id: "kis",
+    name: "KIS",
+    focus: "Nhà đầu tư cá nhân, môi giới, sản phẩm Hàn Quốc",
+    baseRisk: 52,
+    sensitivity: {
+      "Môi giới": 56,
+      "Margin": 64,
+      "Sản phẩm số": 49,
+      "Khách hàng tổ chức": 36,
+    },
+  },
+  {
+    id: "kafi",
+    name: "KAFI",
+    focus: "Nhà đầu tư cá nhân, sản phẩm số, cạnh tranh phí",
+    baseRisk: 51,
+    sensitivity: {
+      "Môi giới": 55,
+      "Margin": 48,
+      "Sản phẩm số": 68,
+      "Khách hàng tổ chức": 32,
     },
   },
 ];
@@ -148,6 +244,8 @@ let themeLabels = ["Tất cả", ...new Set(newsItems.map((item) => item.theme))
 let selectedCompetitorId = competitors[0].id;
 let selectedTheme = "Tất cả";
 let dailyOffset = 0;
+let dataFeedCount = 0;
+let dataArchiveDays = 0;
 
 const dom = {
   todayLabel: document.querySelector("#todayLabel"),
@@ -210,11 +308,16 @@ function escapeHtml(value = "") {
 
 function normalizeNewsItems(items) {
   if (!Array.isArray(items)) return [];
+  const canonicalIds = {
+    vndirect: "vnds",
+    vpx: "vpbanks",
+  };
+
   return items
     .filter((item) => item && item.title && item.competitorId)
     .map((item, index) => ({
       id: item.id || `auto-${index}`,
-      competitorId: item.competitorId,
+      competitorId: canonicalIds[item.competitorId] || item.competitorId,
       source: item.source || "RSS",
       url: item.url || "",
       theme: item.theme || inferTheme(`${item.title} ${item.summary || ""}`),
@@ -229,7 +332,10 @@ async function loadNewsData() {
   const embeddedItems = normalizeNewsItems(window.__SSI_NEWS_DATA__?.items);
   if (embeddedItems.length) {
     newsItems = embeddedItems;
+    dataFeedCount = Array.isArray(window.__SSI_NEWS_DATA__?.feeds) ? window.__SSI_NEWS_DATA__.feeds.length : 0;
+    dataArchiveDays = window.__SSI_NEWS_DATA__?.archiveDays || 0;
     themeLabels = ["Tất cả", ...new Set(newsItems.map((item) => item.theme))];
+    selectCompetitorWithNews();
     return;
   }
 
@@ -242,10 +348,18 @@ async function loadNewsData() {
     if (!loadedItems.length) return;
 
     newsItems = loadedItems;
+    dataFeedCount = Array.isArray(payload.feeds) ? payload.feeds.length : 0;
+    dataArchiveDays = payload.archiveDays || 0;
     themeLabels = ["Tất cả", ...new Set(newsItems.map((item) => item.theme))];
+    selectCompetitorWithNews();
   } catch (error) {
     console.info("No verified RSS data loaded from data/news.json.", error);
   }
+}
+
+function selectCompetitorWithNews() {
+  if (newsItems.some((item) => item.competitorId === selectedCompetitorId)) return;
+  selectedCompetitorId = newsItems[0]?.competitorId || competitors[0].id;
 }
 
 function getLevel(score) {
@@ -465,7 +579,9 @@ function render() {
   dom.todayLabel.textContent = formatDate();
   renderMorningQuote();
   if (dom.dataStatus) {
-    dom.dataStatus.textContent = `${newsItems.length} bài từ RSS gốc trong 7 ngày gần nhất. Chỉ giữ bài có URL báo thật và nhắc đúng đối thủ.`;
+    const feedLabel = dataFeedCount ? `${dataFeedCount} nguồn RSS gốc` : "các nguồn RSS gốc";
+    const archiveLabel = dataArchiveDays ? `kho lưu trữ ${dataArchiveDays} ngày` : "kho lưu trữ";
+    dom.dataStatus.textContent = `${newsItems.length} bài trong ${archiveLabel} từ ${feedLabel}. Chỉ giữ bài có URL báo thật và nhắc đúng đối thủ.`;
   }
   renderCompetitors();
   renderThemeFilters();

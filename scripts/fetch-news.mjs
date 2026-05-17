@@ -4,10 +4,14 @@ import { createHash } from "node:crypto";
 
 const OUTPUT_FILE = "data/news.json";
 const JS_OUTPUT_FILE = "data/news-data.js";
-const MAX_ITEMS = 40;
-const LOOKBACK_DAYS = 7;
+const MAX_ITEMS = 220;
+const ARCHIVE_DAYS = 90;
 
 const competitors = [
+  {
+    id: "ssi",
+    aliases: ["ssi", "chứng khoán ssi", "ctcp chứng khoán ssi", "ssi securities"],
+  },
   {
     id: "vps",
     aliases: ["vps", "ctcp chứng khoán vps", "chứng khoán vps"],
@@ -17,27 +21,57 @@ const competitors = [
     aliases: ["tcbs", "techcom securities", "chứng khoán kỹ thương", "chứng khoán techcom"],
   },
   {
-    id: "vndirect",
-    aliases: ["vndirect", "vnd", "chứng khoán vndirect"],
+    id: "vci",
+    aliases: ["vci", "vietcap", "bản việt", "chứng khoán bản việt", "vietcap securities"],
   },
   {
     id: "hsc",
     aliases: ["hsc", "chứng khoán tp.hcm", "chứng khoán tp hcm", "hochiminh city securities"],
   },
   {
+    id: "mbs",
+    aliases: ["mbs", "chứng khoán mb", "mb securities", "ctcp chứng khoán mb"],
+  },
+  {
     id: "mas",
     aliases: ["mirae asset", "masvn", "mirae asset securities"],
   },
   {
-    id: "vpx",
+    id: "vnds",
+    aliases: ["vndirect", "vnds", "vnd", "chứng khoán vndirect"],
+  },
+  {
+    id: "yuanta",
+    aliases: ["yuanta", "chứng khoán yuanta", "yuanta việt nam", "yuanta securities"],
+  },
+  {
+    id: "dnse",
+    aliases: ["dnse", "chứng khoán dnse", "dnse securities"],
+  },
+  {
+    id: "fpts",
+    aliases: ["fpts", "chứng khoán fpt", "fpt securities"],
+  },
+  {
+    id: "vpbanks",
     aliases: [
       "vpx",
+      "vpbanks",
+      "vpbank s",
       "vpbank securities",
       "vpbanksecurities",
       "vpbank securities jsc",
       "chứng khoán vpbank",
       "ctcp chứng khoán vpbank",
     ],
+  },
+  {
+    id: "kis",
+    aliases: ["kis", "chứng khoán kis", "kis việt nam", "kis securities"],
+  },
+  {
+    id: "kafi",
+    aliases: ["kafi", "chứng khoán kafi", "kafi securities"],
   },
 ];
 
@@ -77,6 +111,56 @@ const feeds = [
     url: "https://vietstock.vn/737/doanh-nghiep/hoat-dong-kinh-doanh.rss",
     host: "vietstock.vn",
   },
+  {
+    name: "VnExpress - Kinh doanh",
+    url: "https://vnexpress.net/rss/kinh-doanh.rss",
+    host: "vnexpress.net",
+  },
+  {
+    name: "VnExpress - Tin mới nhất",
+    url: "https://vnexpress.net/rss/tin-moi-nhat.rss",
+    host: "vnexpress.net",
+  },
+  {
+    name: "Thanh Niên - Kinh tế",
+    url: "https://thanhnien.vn/rss/kinh-te.rss",
+    host: "thanhnien.vn",
+  },
+  {
+    name: "Thanh Niên - Chứng khoán",
+    url: "https://thanhnien.vn/rss/kinh-te/chung-khoan.rss",
+    host: "thanhnien.vn",
+  },
+  {
+    name: "Thanh Niên - Ngân hàng",
+    url: "https://thanhnien.vn/rss/kinh-te/ngan-hang.rss",
+    host: "thanhnien.vn",
+  },
+  {
+    name: "Thanh Niên - Doanh nghiệp",
+    url: "https://thanhnien.vn/rss/kinh-te/doanh-nghiep.rss",
+    host: "thanhnien.vn",
+  },
+  {
+    name: "VnEconomy - Tài chính",
+    url: "https://vneconomy.vn/tai-chinh.rss",
+    host: "vneconomy.vn",
+  },
+  {
+    name: "VnEconomy - Chứng khoán",
+    url: "https://vneconomy.vn/chung-khoan.rss",
+    host: "vneconomy.vn",
+  },
+  {
+    name: "VnEconomy - Doanh nghiệp",
+    url: "https://vneconomy.vn/nhip-cau-doanh-nghiep.rss",
+    host: "vneconomy.vn",
+  },
+  {
+    name: "VnEconomy - Đầu tư",
+    url: "https://vneconomy.vn/dau-tu.rss",
+    host: "vneconomy.vn",
+  },
 ];
 
 function getTag(xml, tagName) {
@@ -93,15 +177,51 @@ function cleanText(value = "") {
 }
 
 function decodeXml(value = "") {
+  const namedEntities = {
+    nbsp: " ",
+    amp: "&",
+    lt: "<",
+    gt: ">",
+    quot: '"',
+    apos: "'",
+    agrave: "à",
+    aacute: "á",
+    acirc: "â",
+    atilde: "ã",
+    egrave: "è",
+    eacute: "é",
+    ecirc: "ê",
+    igrave: "ì",
+    iacute: "í",
+    ograve: "ò",
+    oacute: "ó",
+    ocirc: "ô",
+    otilde: "õ",
+    ugrave: "ù",
+    uacute: "ú",
+    yacute: "ý",
+    Agrave: "À",
+    Aacute: "Á",
+    Acirc: "Â",
+    Atilde: "Ã",
+    Egrave: "È",
+    Eacute: "É",
+    Ecirc: "Ê",
+    Igrave: "Ì",
+    Iacute: "Í",
+    Ograve: "Ò",
+    Oacute: "Ó",
+    Ocirc: "Ô",
+    Otilde: "Õ",
+    Ugrave: "Ù",
+    Uacute: "Ú",
+    Yacute: "Ý",
+  };
+
   return value
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&#x27;/g, "'")
-    .replace(/&#x2F;/g, "/");
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCharCode(parseInt(code, 16)))
+    .replace(/&([a-zA-Z]+);/g, (match, entity) => namedEntities[entity] ?? match);
 }
 
 function normalizeText(value = "") {
@@ -139,18 +259,26 @@ function inferTheme(text) {
   return "Môi giới";
 }
 
-function isWithinLookback(publishedAt) {
+function isWithinArchive(publishedAt) {
   const publishedTime = new Date(publishedAt).getTime();
   if (!Number.isFinite(publishedTime)) return false;
 
-  const cutoffTime = Date.now() - LOOKBACK_DAYS * 24 * 60 * 60 * 1000;
+  const cutoffTime = Date.now() - ARCHIVE_DAYS * 24 * 60 * 60 * 1000;
   return publishedTime >= cutoffTime;
 }
 
 function findCompetitor(title, description) {
   const normalized = normalizeText(`${title} ${description}`);
   return competitors.find((competitor) =>
-    competitor.aliases.some((alias) => normalized.includes(normalizeText(alias))),
+    competitor.aliases.some((alias) => {
+      const normalizedAlias = normalizeText(alias);
+      return (
+        normalized === normalizedAlias ||
+        normalized.startsWith(`${normalizedAlias} `) ||
+        normalized.endsWith(` ${normalizedAlias}`) ||
+        normalized.includes(` ${normalizedAlias} `)
+      );
+    }),
   );
 }
 
@@ -179,7 +307,7 @@ function parseRss(xml, feed) {
       }
 
       const publishedAt = pubDate ? new Date(pubDate).toISOString() : new Date().toISOString();
-      if (!isWithinLookback(publishedAt)) {
+      if (!isWithinArchive(publishedAt)) {
         return null;
       }
 
@@ -237,23 +365,27 @@ function dedupeItems(items) {
 }
 
 function filterExistingStrict(items) {
-  return items.filter(
-    (item) => findCompetitor(item.title, item.summary || item.content || "") && isWithinLookback(item.publishedAt),
-  );
+  return items
+    .map((item) => {
+      const competitor = findCompetitor(item.title, item.summary || item.content || "");
+      return competitor ? { ...item, competitorId: competitor.id } : null;
+    })
+    .filter((item) => item && isWithinArchive(item.publishedAt));
 }
 
 async function main() {
   const batches = await Promise.allSettled(feeds.map(fetchFeed));
   const fetchedItems = batches.flatMap((result) => (result.status === "fulfilled" ? result.value : []));
   const existingItems = filterExistingStrict(await readExistingNews());
-  const items = dedupeItems(fetchedItems.length ? fetchedItems : existingItems)
+  const items = dedupeItems([...fetchedItems, ...existingItems])
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
     .slice(0, MAX_ITEMS);
 
   const payload = {
         generatedAt: new Date().toISOString(),
-        source: fetchedItems.length ? "Original publisher RSS" : "existing strict fallback",
-        lookbackDays: LOOKBACK_DAYS,
+        source: "Original publisher RSS archive",
+        archiveDays: ARCHIVE_DAYS,
+        fetchedItems: fetchedItems.length,
         feeds: feeds.map(({ name, url }) => ({ name, url })),
     items,
   };

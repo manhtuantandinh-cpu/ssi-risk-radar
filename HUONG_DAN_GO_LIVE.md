@@ -70,10 +70,11 @@ Workflow `.github/workflows/update-news-and-deploy.yml` đang chạy mỗi ngày
 Mỗi lần chạy, nó sẽ:
 
 1. Lấy tin từ RSS gốc của các báo đang cấu hình.
-2. Chỉ giữ bài trong 7 ngày gần nhất và có nhắc đúng đối thủ.
+2. Gộp tin mới với kho lưu trữ trong `data/news.json`.
 3. Ghi tin mới vào `data/news.json`.
 4. Ghi thêm `data/news-data.js` để bản mở local cũng đọc được dữ liệu.
-5. Deploy lại website lên GitHub Pages.
+5. Commit kho tin về repo để các bài cũ không bị mất.
+6. Deploy lại website lên GitHub Pages.
 
 Bạn cũng có thể cập nhật thủ công bất cứ lúc nào:
 
@@ -133,10 +134,12 @@ Tìm mảng `feeds`, rồi thêm nguồn RSS mới theo mẫu:
 
 Hệ thống chỉ giữ link nếu URL bài viết thuộc đúng `host`, vì vậy nút `Đọc bài` sẽ đi tới bài gốc của nguồn đó.
 
+Các nguồn đang có sẵn gồm CafeF, Vietstock, VnExpress, Thanh Niên và VnEconomy, ưu tiên chuyên mục chứng khoán, đầu tư, kinh tế, tài chính, ngân hàng và doanh nghiệp.
+
 ## Lưu ý quan trọng
 
 - Hệ thống không dùng Google News RSS nữa vì dễ lẫn ngữ cảnh.
-- Nếu không có bài nào nhắc đúng đối thủ trong RSS gốc, web sẽ không tự tạo bài giả.
+- Nếu không có bài mới nhắc đúng đối thủ trong RSS gốc, web vẫn giữ kho bài cũ trong 90 ngày.
 - Càng thêm nhiều RSS báo gốc chất lượng, khả năng có tin đúng mỗi ngày càng cao.
 - Bộ chấm điểm rủi ro hiện là rule-based, chưa dùng AI trả phí.
 - Nếu muốn tóm tắt sâu hơn hoặc đánh giá thông minh hơn, lúc đó có thể tích hợp API AI sau.

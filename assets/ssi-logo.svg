@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" aria-labelledby="title desc">
+  <title id="title">SSI</title>
+  <desc id="desc">SSI logo-style mark for the competitive radar dashboard.</desc>
+  <rect width="240" height="96" rx="12" fill="#e30613"/>
+  <g fill="#fff">
+    <path d="M38 28h55v11H48c-5 0-9 4-9 9s4 9 9 9h26c12 0 22 10 22 22s-10 22-22 22H25V90h49c6 0 11-5 11-11s-5-11-11-11H48c-12 0-21-9-21-20s9-20 21-20z" transform="scale(.8) translate(0 0)"/>
+    <path d="M116 28h55v11h-45c-5 0-9 4-9 9s4 9 9 9h26c12 0 22 10 22 22s-10 22-22 22h-49V90h49c6 0 11-5 11-11s-5-11-11-11h-26c-12 0-21-9-21-20s9-20 21-20z" transform="scale(.8) translate(10 0)"/>
+    <rect x="180" y="22" width="14" height="52" rx="3"/>
+    <rect x="206" y="22" width="14" height="52" rx="3"/>
+  </g>
+  <text x="30" y="79" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2">SECURITIES</text>
+</svg>
