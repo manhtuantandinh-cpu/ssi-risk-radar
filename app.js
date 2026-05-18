@@ -245,6 +245,7 @@ let selectedCompetitorId = competitors[0].id;
 let selectedTheme = "Tất cả";
 let dailyOffset = 0;
 let dataFeedCount = 0;
+let dataOfficialSourceCount = 0;
 let dataArchiveDays = 0;
 
 const dom = {
@@ -333,6 +334,9 @@ async function loadNewsData() {
   if (embeddedItems.length) {
     newsItems = embeddedItems;
     dataFeedCount = Array.isArray(window.__SSI_NEWS_DATA__?.feeds) ? window.__SSI_NEWS_DATA__.feeds.length : 0;
+    dataOfficialSourceCount = Array.isArray(window.__SSI_NEWS_DATA__?.officialSources)
+      ? window.__SSI_NEWS_DATA__.officialSources.length
+      : 0;
     dataArchiveDays = window.__SSI_NEWS_DATA__?.archiveDays || 0;
     themeLabels = ["Tất cả", ...new Set(newsItems.map((item) => item.theme))];
     selectCompetitorWithNews();
@@ -349,6 +353,7 @@ async function loadNewsData() {
 
     newsItems = loadedItems;
     dataFeedCount = Array.isArray(payload.feeds) ? payload.feeds.length : 0;
+    dataOfficialSourceCount = Array.isArray(payload.officialSources) ? payload.officialSources.length : 0;
     dataArchiveDays = payload.archiveDays || 0;
     themeLabels = ["Tất cả", ...new Set(newsItems.map((item) => item.theme))];
     selectCompetitorWithNews();
@@ -579,7 +584,10 @@ function render() {
   dom.todayLabel.textContent = formatDate();
   renderMorningQuote();
   if (dom.dataStatus) {
-    const feedLabel = dataFeedCount ? `${dataFeedCount} nguồn RSS gốc` : "các nguồn RSS gốc";
+    const sourceParts = [];
+    if (dataFeedCount) sourceParts.push(`${dataFeedCount} RSS báo`);
+    if (dataOfficialSourceCount) sourceParts.push(`${dataOfficialSourceCount} trang công ty chứng khoán`);
+    const feedLabel = sourceParts.length ? sourceParts.join(" + ") : "các nguồn gốc";
     const archiveLabel = dataArchiveDays ? `kho lưu trữ ${dataArchiveDays} ngày` : "kho lưu trữ";
     dom.dataStatus.textContent = `${newsItems.length} bài trong ${archiveLabel} từ ${feedLabel}. Chỉ giữ bài có URL báo thật và nhắc đúng đối thủ.`;
   }

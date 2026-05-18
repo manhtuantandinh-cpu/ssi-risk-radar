@@ -47,6 +47,7 @@ Nguyên tắc lọc hiện tại:
 - Chỉ giữ URL thuộc domain nguồn báo gốc, ví dụ `cafef.vn` hoặc `vietstock.vn`.
 - Lưu kho bài trong 90 ngày gần nhất để dashboard có nhiều dữ liệu hơn.
 - Nguồn RSS hiện gồm CafeF, Vietstock, VnExpress, Thanh Niên và VnEconomy.
+- Ngoài RSS báo chí, script còn đọc trực tiếp một số trang chính chủ của các công ty chứng khoán, đặc biệt các trang margin, biểu phí, lãi suất và dịch vụ tài chính.
 
 Nếu hôm đó không có bài đạt điều kiện, web sẽ hiển thị trạng thái chưa có tin phù hợp thay vì tự tạo tin thay thế.
 

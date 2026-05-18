@@ -163,6 +163,171 @@ const feeds = [
   },
 ];
 
+const officialArticles = [
+  {
+    competitorId: "ssi",
+    source: "SSI - Chính sách margin",
+    url: "https://www.ssi.com.vn/tin-tuc/tin-tuc-su-kien-ssi/ra-mat-goi-nhap-cuoc-voi-lai-suat-9-danh-cho-khach-hang-dung-margin-lan-dau",
+    host: "ssi.com.vn",
+  },
+  {
+    competitorId: "ssi",
+    source: "SSI - Margin loan",
+    url: "https://www.ssi.com.vn/en/individual-customer/margin-loan",
+    host: "ssi.com.vn",
+  },
+  {
+    competitorId: "vps",
+    source: "VPS - Margin FAQ",
+    url: "https://www.vps.com.vn/ca-nhan/ho-tro/cau-hoi-thuong-gap/lai-suat-vay-khi-su-dung-san-pham-ky-quy-margin-la-bao-nhieu",
+    host: "vps.com.vn",
+  },
+  {
+    competitorId: "vps",
+    source: "VPS - Margin trading service",
+    url: "https://vps.com.vn/en/retail-sales/products-services/margin-trading-service",
+    host: "vps.com.vn",
+  },
+  {
+    competitorId: "tcbs",
+    source: "TCBS - Margin 789",
+    url: "https://www.tcbs.com.vn/ca-nhan/uu-dai/margin-789/",
+    host: "tcbs.com.vn",
+  },
+  {
+    competitorId: "tcbs",
+    source: "TCBS Help - Chính sách margin",
+    url: "https://help.tcbs.com.vn/chinh-sach-margin/",
+    host: "help.tcbs.com.vn",
+  },
+  {
+    competitorId: "tcbs",
+    source: "TCBS Help - Vay ký quỹ",
+    url: "https://help.tcbs.com.vn/vay-ky-quy-margin/",
+    host: "help.tcbs.com.vn",
+  },
+  {
+    competitorId: "vci",
+    source: "Vietcap - Dịch vụ margin",
+    url: "https://www.vietcap.com.vn/san-pham-tai-chinh/huong-dan-chung-khoan-co-so/dich-vu-margin",
+    host: "vietcap.com.vn",
+  },
+  {
+    competitorId: "vci",
+    source: "Vietcap - Kiến thức margin",
+    url: "https://www.vietcap.com.vn/tin-tuc/cach-su-dung-margin-hieu-qua-va-tranh-rui-ro",
+    host: "vietcap.com.vn",
+  },
+  {
+    competitorId: "hsc",
+    source: "HSC - Margin lending",
+    url: "https://www.hsc.com.vn/en/hsc-margin-lending",
+    host: "hsc.com.vn",
+  },
+  {
+    competitorId: "hsc",
+    source: "HSC Online - Sử dụng margin",
+    url: "https://online.hsc.com.vn/tin-tuc/de-dau-tu-chung-khoan-hieu-qua/lam-the-nao-de-su-dung-margin-hieu-qua.html",
+    host: "online.hsc.com.vn",
+  },
+  {
+    competitorId: "mbs",
+    source: "MBS - Phí và lãi suất margin",
+    url: "https://mbs.com.vn/vi/goc-truyen-thong/tin-tuc-mbs/phi-giao-dich-va-lai-suat-margin-mbs-online/",
+    host: "mbs.com.vn",
+  },
+  {
+    competitorId: "mas",
+    source: "Mirae Asset - Margin 6.99%",
+    url: "https://www.masvn.com/article/margin-699-lai-suat-sieu-hoi-dau-tu-them-loi-1084074",
+    host: "masvn.com",
+  },
+  {
+    competitorId: "mas",
+    source: "Mirae Asset - Danh mục margin",
+    url: "https://www.masvn.com/article/chung-khoan-mirae-asset-cap-nhat-danh-muc-chung-khoan-duoc-giao-dich-ky-quy-va-gia-chanmirae-asset-securities-viet-nam-jsc-update-on-the-margin-trading-securities-list-749887",
+    host: "masvn.com",
+  },
+  {
+    competitorId: "vnds",
+    source: "VNDirect - Margin",
+    url: "https://support.vndirect.com.vn/hc/vi/articles/360002244373-MARGIN-GIAO-D%E1%BB%8ACH-K%C3%9D-QU%E1%BB%B8-VNDIRECT",
+    host: "support.vndirect.com.vn",
+  },
+  {
+    competitorId: "vnds",
+    source: "VNDirect - Biểu phí lãi margin",
+    url: "https://www.vndirect.com.vn/bieu-phi-lai-margin/",
+    host: "vndirect.com.vn",
+  },
+  {
+    competitorId: "yuanta",
+    source: "Yuanta - Sử dụng margin",
+    url: "https://yuanta.com.vn/tin-tuc/khi-nao-nen-su-dung-margin-goi-y-tu-chuyen-gia-dau-tu-chung-khoan",
+    host: "yuanta.com.vn",
+  },
+  {
+    competitorId: "yuanta",
+    source: "Yuanta - Hướng dẫn margin",
+    url: "https://yuanta.com.vn/tin-tuc/huong-dan-giao-dich-margin-hieu-qua-cho-nha-dau-tu-f0-va-f1",
+    host: "yuanta.com.vn",
+  },
+  {
+    competitorId: "dnse",
+    source: "DNSE - Margin X",
+    url: "https://www.dnse.com.vn/san-pham/margin",
+    host: "dnse.com.vn",
+  },
+  {
+    competitorId: "dnse",
+    source: "DNSE - Margin 5.99%",
+    url: "https://www.dnse.com.vn/margin599",
+    host: "dnse.com.vn",
+  },
+  {
+    competitorId: "fpts",
+    source: "FPTS - Margin trading",
+    url: "https://www.fpts.com.vn/customer-service/financial-services/margin-trading/margin-trading-by-item/",
+    host: "fpts.com.vn",
+  },
+  {
+    competitorId: "fpts",
+    source: "FPTS - Margin T+",
+    url: "https://www.fpts.com.vn/products-services/securities-trading/financial-services/margin-trading-by-item/margin/margin-tplus/",
+    host: "fpts.com.vn",
+  },
+  {
+    competitorId: "vpbanks",
+    source: "VPBankS - eMargin",
+    url: "https://www.vpbanks.com.vn/emargin-2",
+    host: "vpbanks.com.vn",
+  },
+  {
+    competitorId: "kis",
+    source: "KIS - Margin K+",
+    url: "https://kisvn.vn/san-pham-dich-vu/margin/san-pham-margin/",
+    host: "kisvn.vn",
+  },
+  {
+    competitorId: "kis",
+    source: "KIS - Ứng trước",
+    url: "https://kisvn.vn/san-pham-dich-vu/margin/ung-truoc/",
+    host: "kisvn.vn",
+  },
+  {
+    competitorId: "kafi",
+    source: "KAFI - Margin",
+    url: "https://kafi.vn/",
+    host: "kafi.vn",
+  },
+  {
+    competitorId: "kafi",
+    source: "KAFI - Margin Zero",
+    url: "https://kafi.vn/margin-zero",
+    host: "kafi.vn",
+  },
+];
+
 function getTag(xml, tagName) {
   const match = xml.match(new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, "i"));
   return match ? cleanText(match[1]) : "";
@@ -240,6 +405,42 @@ function truncate(value, maxLength = 230) {
   return `${value.slice(0, maxLength - 1).trim()}…`;
 }
 
+function getMetaContent(html, name) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const patterns = [
+    new RegExp(`<meta[^>]+property=["']${escaped}["'][^>]+content=["']([^"']+)["'][^>]*>`, "i"),
+    new RegExp(`<meta[^>]+name=["']${escaped}["'][^>]+content=["']([^"']+)["'][^>]*>`, "i"),
+    new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+property=["']${escaped}["'][^>]*>`, "i"),
+    new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+name=["']${escaped}["'][^>]*>`, "i"),
+  ];
+
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match) return cleanText(match[1]);
+  }
+
+  return "";
+}
+
+function getHtmlTag(html, tagName) {
+  const match = html.match(new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, "i"));
+  return match ? cleanText(match[1]) : "";
+}
+
+function getRelevantExcerpt(text) {
+  const normalized = normalizeText(text);
+  const keywords = ["margin", "ky quy", "lai suat", "cho vay", "ung truoc", "han muc", "phi giao dich"];
+  const index = keywords
+    .map((keyword) => normalized.indexOf(keyword))
+    .filter((position) => position >= 0)
+    .sort((a, b) => a - b)[0];
+
+  if (index === undefined) return truncate(text, 260);
+
+  const start = Math.max(0, index - 140);
+  return truncate(text.slice(start, start + 420).trim(), 260);
+}
+
 function makeId(competitorId, title, url) {
   const hash = createHash("sha1").update(`${competitorId}:${title}:${url}`).digest("hex").slice(0, 10);
   return `${competitorId}-${hash}`;
@@ -289,6 +490,18 @@ function isOriginalArticleUrl(url, host) {
   } catch {
     return false;
   }
+}
+
+function getHostname(url) {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return "";
+  }
+}
+
+function getHostLabel(url) {
+  return getHostname(url).replace(/^www\./, "");
 }
 
 function parseRss(xml, feed) {
@@ -344,6 +557,57 @@ async function fetchFeed(feed) {
   return parseRss(xml, feed);
 }
 
+async function fetchOfficialArticle(article, existingByUrl) {
+  const response = await fetch(article.url, {
+    headers: {
+      "user-agent": "SSI Competitive Risk Radar/1.0",
+      accept: "text/html,application/xhtml+xml,application/xml",
+    },
+  });
+
+  if (!isOriginalArticleUrl(article.url, article.host)) {
+    return null;
+  }
+
+  const html = await response.text();
+  if (!response.ok && !/<html|<title|<h1|<meta/i.test(html)) {
+    throw new Error(`Official page failed for ${article.source}: ${response.status}`);
+  }
+
+  const plainText = cleanText(html);
+  const title =
+    article.title ||
+    getMetaContent(html, "og:title") ||
+    getHtmlTag(html, "h1") ||
+    getHtmlTag(html, "title") ||
+    article.source;
+  const description =
+    getMetaContent(html, "description") ||
+    getMetaContent(html, "og:description") ||
+    getRelevantExcerpt(plainText) ||
+    title;
+  const content = `${title}. ${description}. ${getRelevantExcerpt(plainText)}`;
+  const existing = existingByUrl.get(article.url);
+  const publishedAt = existing?.publishedAt || article.publishedAt || new Date().toISOString();
+
+  if (!isWithinArchive(publishedAt)) {
+    return null;
+  }
+
+  return {
+    id: makeId(article.competitorId, title, article.url),
+    competitorId: article.competitorId,
+    source: article.source || `Official - ${getHostLabel(article.url)}`,
+    url: article.url,
+    theme: inferTheme(content),
+    title,
+    summary: truncate(description || title),
+    content,
+    publishedAt,
+    sourceType: "official-company-site",
+  };
+}
+
 async function readExistingNews() {
   if (!existsSync(OUTPUT_FILE)) return [];
   try {
@@ -374,19 +638,27 @@ function filterExistingStrict(items) {
 }
 
 async function main() {
+  const existingItems = filterExistingStrict(await readExistingNews());
+  const existingByUrl = new Map(existingItems.map((item) => [item.url, item]));
   const batches = await Promise.allSettled(feeds.map(fetchFeed));
   const fetchedItems = batches.flatMap((result) => (result.status === "fulfilled" ? result.value : []));
-  const existingItems = filterExistingStrict(await readExistingNews());
-  const items = dedupeItems([...fetchedItems, ...existingItems])
+  const officialBatches = await Promise.allSettled(
+    officialArticles.map((article) => fetchOfficialArticle(article, existingByUrl)),
+  );
+  const officialItems = officialBatches
+    .flatMap((result) => (result.status === "fulfilled" && result.value ? [result.value] : []));
+  const items = dedupeItems([...fetchedItems, ...officialItems, ...existingItems])
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
     .slice(0, MAX_ITEMS);
 
   const payload = {
         generatedAt: new Date().toISOString(),
-        source: "Original publisher RSS archive",
+        source: "Original publisher RSS and official company site archive",
         archiveDays: ARCHIVE_DAYS,
         fetchedItems: fetchedItems.length,
+        officialItems: officialItems.length,
         feeds: feeds.map(({ name, url }) => ({ name, url })),
+        officialSources: officialArticles.map(({ competitorId, source, url }) => ({ competitorId, source, url })),
     items,
   };
 

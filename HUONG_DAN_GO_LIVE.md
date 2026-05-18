@@ -136,6 +136,8 @@ Hệ thống chỉ giữ link nếu URL bài viết thuộc đúng `host`, vì v
 
 Các nguồn đang có sẵn gồm CafeF, Vietstock, VnExpress, Thanh Niên và VnEconomy, ưu tiên chuyên mục chứng khoán, đầu tư, kinh tế, tài chính, ngân hàng và doanh nghiệp.
 
+Ngoài RSS báo chí, script còn có mảng `officialArticles` để đọc trực tiếp trang chính chủ của công ty chứng khoán, ví dụ trang margin, biểu phí, lãi suất và dịch vụ tài chính.
+
 ## Lưu ý quan trọng
 
 - Hệ thống không dùng Google News RSS nữa vì dễ lẫn ngữ cảnh.
